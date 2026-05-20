@@ -162,10 +162,10 @@ def run_crawler(output_path: str = None, limit: int = None) -> None:
         logger.info(f"开始爬取旅游数据 - 输出: {output_path}, 限制: {limit}条")
         
         # 导入爬虫模块
-        import 爬虫终极版
-        
+        import ctrip_crawler
+
         # 设置参数并执行爬取
-        爬虫终极版.main(output_path, limit)
+        ctrip_crawler.main(output_path, limit)
         
         logger.info("数据爬取完成")
         

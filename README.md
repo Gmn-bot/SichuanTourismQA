@@ -49,7 +49,7 @@ python src/main.py chat
 
 ### 1. 数据获取与预处理模块
 
-- **数据爬取**：`爬虫终极版.py` 用于从携程网站爬取四川景点信息
+- **数据爬取**：`ctrip_crawler.py` 用于从携程网站爬取四川景点信息
 - **数据预处理**：`Dataset_preprocess.py` 用于清洗原始数据并转换为知识图谱三元组格式
 
 ### 2. 知识图谱构建模块
@@ -226,7 +226,7 @@ SichuanTourismQA/
 ├── question_classifier.py # 问题分类器
 ├── question_parser.py     # 问题解析器
 ├── answer_search.py       # 答案搜索器
-├── 爬虫终极版.py           # 数据爬取程序
+├── ctrip_crawler.py          # 数据爬取程序
 ├── Dataset_preprocess.py  # 数据预处理程序
 ├── py2neo_data_import.py  # 数据导入Neo4j程序
 ├── setup.py               # 安装脚本
