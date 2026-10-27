@@ -1,0 +1,153 @@
+[
+  {
+    "id": "fact-panda-address",
+    "type": "fact",
+    "question": "成都大熊猫繁育研究基地的地址在哪里？",
+    "expect_names": ["成都大熊猫繁育研究基地"],
+    "expect_contains": ["熊猫"]
+  },
+  {
+    "id": "fact-panda-hours",
+    "type": "fact",
+    "question": "成都大熊猫繁育研究基地的开放时间是什么？",
+    "expect_names": ["成都大熊猫繁育研究基地"]
+  },
+  {
+    "id": "fact-panda-phone",
+    "type": "fact",
+    "question": "熊猫基地的电话是多少？",
+    "expect_names": ["成都大熊猫繁育研究基地"]
+  },
+  {
+    "id": "intro-panda",
+    "type": "intro",
+    "question": "介绍一下成都大熊猫繁育研究基地",
+    "expect_names": ["成都大熊猫繁育研究基地"]
+  },
+  {
+    "id": "fact-wuhou",
+    "type": "fact",
+    "question": "武侯祠的地址是什么？",
+    "expect_names": ["武侯祠"]
+  },
+  {
+    "id": "fact-dujiangyan",
+    "type": "fact",
+    "question": "都江堰景区几点开门？",
+    "expect_names": ["都江堰景区", "都江堰"]
+  },
+  {
+    "id": "fact-rating",
+    "type": "fact",
+    "question": "峨眉山的评分怎么样？",
+    "expect_names": ["峨眉山"]
+  },
+  {
+    "id": "multi-attr",
+    "type": "fact",
+    "question": "青城山在哪里，什么时候开放？",
+    "expect_names": ["青城山"]
+  },
+  {
+    "id": "fact-leshan",
+    "type": "fact",
+    "question": "乐山大佛的地址在哪？",
+    "expect_names": ["乐山大佛"]
+  },
+  {
+    "id": "fact-caotang",
+    "type": "fact",
+    "question": "杜甫草堂的开放时间是什么？",
+    "expect_names": ["杜甫草堂"]
+  },
+  {
+    "id": "fact-jinsha",
+    "type": "fact",
+    "question": "金沙遗址博物馆在哪里？",
+    "expect_names": ["金沙遗址博物馆"]
+  },
+  {
+    "id": "rec-chengdu-kids",
+    "type": "recommend",
+    "question": "成都适合带小孩的景点有哪些？",
+    "expect_names": ["成都大熊猫繁育研究基地"]
+  },
+  {
+    "id": "rec-chengdu",
+    "type": "recommend",
+    "question": "推荐成都有哪些著名景点？",
+    "expect_contains": []
+  },
+  {
+    "id": "rec-free",
+    "type": "recommend",
+    "question": "成都有哪些免费的景点？",
+    "expect_contains": []
+  },
+  {
+    "id": "compare",
+    "type": "compare",
+    "question": "峨眉山和青城山哪个评分更高？",
+    "expect_names": ["峨眉山", "青城山"]
+  },
+  {
+    "id": "compare-wuhou-caotang",
+    "type": "compare",
+    "question": "武侯祠和杜甫草堂哪个评分更高？",
+    "expect_names": ["武侯祠", "杜甫草堂"]
+  },
+  {
+    "id": "open-nature",
+    "type": "open",
+    "question": "四川有哪些自然风景好的地方？",
+    "expect_contains": []
+  },
+  {
+    "id": "ticket-policy",
+    "type": "fact",
+    "question": "成都大熊猫繁育研究基地门票多少钱？",
+    "expect_names": ["成都大熊猫繁育研究基地"]
+  },
+  {
+    "id": "refuse-realtime",
+    "type": "refuse",
+    "question": "九寨沟明天还剩多少张门票可以买？",
+    "expect_contains": ["没有", "暂无", "抱歉", "无法"]
+  },
+  {
+    "id": "refuse-unknown",
+    "type": "refuse",
+    "question": "北京故宫今天人多吗？",
+    "expect_contains": []
+  },
+  {
+    "id": "alias-jinli",
+    "type": "fact",
+    "question": "锦里的地址在哪？",
+    "expect_names": ["锦里古街", "锦里"]
+  },
+  {
+    "id": "website",
+    "type": "fact",
+    "question": "宽窄巷子的官网是什么？",
+    "expect_names": ["宽窄巷子"]
+  },
+  {
+    "id": "nearby",
+    "type": "recommend",
+    "question": "去了武侯祠还可以去哪些附近景点？",
+    "expect_names": ["武侯祠"]
+  },
+  {
+    "id": "facilities",
+    "type": "fact",
+    "question": "成都大熊猫繁育研究基地有什么服务设施？",
+    "expect_names": ["成都大熊猫繁育研究基地"]
+  },
+  {
+    "id": "intro-jinli",
+    "type": "intro",
+    "question": "介绍一下锦里古街",
+    "expect_names": ["锦里古街", "锦里"]
+  }
+]

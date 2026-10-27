@@ -1,0 +1,378 @@
+{
+  "total": 25,
+  "passed": 25,
+  "accuracy": 1.0,
+  "elapsed_sec": 2.19,
+  "avg_latency_ms": 87.7,
+  "use_llm": false,
+  "by_type": {
+    "fact": {
+      "n": 14,
+      "ok": 14
+    },
+    "intro": {
+      "n": 2,
+      "ok": 2
+    },
+    "recommend": {
+      "n": 4,
+      "ok": 4
+    },
+    "compare": {
+      "n": 2,
+      "ok": 2
+    },
+    "open": {
+      "n": 1,
+      "ok": 1
+    },
+    "refuse": {
+      "n": 2,
+      "ok": 2
+    }
+  },
+  "failed": [],
+  "cases": [
+    {
+      "id": "fact-panda-address",
+      "question": "成都大熊猫繁育研究基地的地址在哪里？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 2068.7,
+      "answer_preview": "成都大熊猫繁育研究基地的地址是：成都市成华区外北熊猫大道1375号。",
+      "sources": [
+        "成都大熊猫繁育研究基地"
+      ]
+    },
+    {
+      "id": "fact-panda-hours",
+      "question": "成都大熊猫繁育研究基地的开放时间是什么？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 2.7,
+      "answer_preview": "成都大熊猫繁育研究基地的开放时间是：03/01-10/31 07:30-18:00开放;11/01-02/28 08:00-17:30开放，3月1日至10月31日：上午票入园时间7:30-12:00,；下午票入园时间：12:00-17:00",
+      "sources": [
+        "成都大熊猫繁育研究基地"
+      ]
+    },
+    {
+      "id": "fact-panda-phone",
+      "question": "熊猫基地的电话是多少？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 2.3,
+      "answer_preview": "成都大熊猫繁育研究基地的电话是：028-83510033。",
+      "sources": [
+        "成都大熊猫繁育研究基地"
+      ]
+    },
+    {
+      "id": "intro-panda",
+      "question": "介绍一下成都大熊猫繁育研究基地",
+      "type": "intro",
+      "ok": true,
+      "mode": "template",
+      "intent": "intro",
+      "latency_ms": 2.2,
+      "answer_preview": "成都大熊猫繁育研究基地的简介是：基地内有很多萌萌的大熊猫，你可以近距离的去观赏这些萌哒哒的国宝们。基地位于成都市北郊，距市区约10公里，建设完全模拟大熊猫野外生活环境，建有湖泊、溪流、竹林、草坪等。\n\n\n基地设有众多“熊猫别墅”就是熊猫的封",
+      "sources": [
+        "成都大熊猫繁育研究基地"
+      ]
+    },
+    {
+      "id": "fact-wuhou",
+      "question": "武侯祠的地址是什么？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 3.1,
+      "answer_preview": "武侯祠的地址是：四川省成都市武侯区武侯祠大街231号。武侯祠的简介是：成都武侯祠是纪念刘备、诸葛亮等蜀汉英雄人物庙宇所在。它肇始于蜀汉昭烈帝章武元年（221年）刘备惠陵修建时，在修建惠陵的同时也修建了汉昭烈庙。\n约在公元500年前后南北朝时",
+      "sources": [
+        "武侯祠"
+      ]
+    },
+    {
+      "id": "fact-dujiangyan",
+      "question": "都江堰景区几点开门？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 4.2,
+      "answer_preview": "都江堰景区的开放时间是：01/01-02/28 08:00-17:00开放;03/01-03/29 08:00-18:00开放;03/31-12/31 08:00-18:00开放;03/30 11:00-18:00开放。",
+      "sources": [
+        "都江堰景区"
+      ]
+    },
+    {
+      "id": "fact-rating",
+      "question": "峨眉山的评分怎么样？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 24.3,
+      "answer_preview": "峨眉山的评分是：4.8。",
+      "sources": [
+        "峨眉山"
+      ]
+    },
+    {
+      "id": "multi-attr",
+      "question": "青城山在哪里，什么时候开放？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 3.1,
+      "answer_preview": "青城山的地址是：四川省成都市都江堰市青城山镇青城山路。青城山的开放时间是：01/01-04/30 08:30-17:00开放;05/01-09/30 08:30-17:30开放;10/01-12/31 08:30-17:00开放。",
+      "sources": [
+        "青城山"
+      ]
+    },
+    {
+      "id": "fact-leshan",
+      "question": "乐山大佛的地址在哪？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 3.1,
+      "answer_preview": "乐山大佛的地址是：四川省乐山市市中区凌云路中段2435号。",
+      "sources": [
+        "乐山大佛"
+      ]
+    },
+    {
+      "id": "fact-caotang",
+      "question": "杜甫草堂的开放时间是什么？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 2.3,
+      "answer_preview": "杜甫草堂的开放时间是：01/01-04/30 09:00-18:00开放;05/06-12/31 09:00-18:00开放;05/01-05/05 08:30-18:30开放。杜甫草堂的简介是：唐代著名诗人杜甫流寓成都时的故居。杜甫在此居",
+      "sources": [
+        "杜甫草堂"
+      ]
+    },
+    {
+      "id": "fact-jinsha",
+      "question": "金沙遗址博物馆在哪里？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 3.1,
+      "answer_preview": "金沙遗址博物馆的地址是：成都市青羊区金沙遗址路2号。",
+      "sources": [
+        "金沙遗址博物馆"
+      ]
+    },
+    {
+      "id": "rec-chengdu-kids",
+      "question": "成都适合带小孩的景点有哪些？",
+      "type": "recommend",
+      "ok": true,
+      "mode": "template",
+      "intent": "recommend",
+      "latency_ms": 11.9,
+      "answer_preview": "根据知识图谱，为你找到以下景点：\n- 成都大熊猫繁育研究基地（成都 · 亲子、动物、自然、高分，评分 4.5）\n- 成都欢乐谷（成都 · 亲子、高分、游乐，评分 4.7）\n- 熊猫谷（成都 · 亲子、动物、自然，评分 4.4）\n- 都江堰中",
+      "sources": [
+        "成都大熊猫繁育研究基地",
+        "成都欢乐谷",
+        "熊猫谷",
+        "都江堰中华大熊猫苑(原熊猫乐园)",
+        "环球中心海洋乐园"
+      ]
+    },
+    {
+      "id": "rec-chengdu",
+      "question": "推荐成都有哪些著名景点？",
+      "type": "recommend",
+      "ok": true,
+      "mode": "template",
+      "intent": "recommend",
+      "latency_ms": 17.0,
+      "answer_preview": "根据知识图谱，为你找到以下景点：\n- 成都大熊猫繁育研究基地（成都 · 亲子、动物、自然、高分，评分 4.5）\n- 都江堰景区（成都 · 高分，评分 4.7）\n- 杜甫草堂（成都 · 高分、人文、免费、历史、宗教，评分 4.6）\n- 武侯祠",
+      "sources": [
+        "成都大熊猫繁育研究基地",
+        "都江堰景区",
+        "杜甫草堂",
+        "武侯祠",
+        "青城山"
+      ]
+    },
+    {
+      "id": "rec-free",
+      "question": "成都有哪些免费的景点？",
+      "type": "recommend",
+      "ok": true,
+      "mode": "template",
+      "intent": "recommend",
+      "latency_ms": 7.1,
+      "answer_preview": "根据知识图谱，为你找到以下景点：\n- 杜甫草堂（成都 · 高分、人文、免费、历史、宗教，评分 4.6）\n- 武侯祠（成都 · 高分、人文、免费、历史、宗教，评分 4.6）\n- 成都自然博物馆（成都 · 高分、人文、免费、展览，评分 4.8）",
+      "sources": [
+        "杜甫草堂",
+        "武侯祠",
+        "成都自然博物馆",
+        "成都天台山旅游景区",
+        "水井坊博物馆"
+      ]
+    },
+    {
+      "id": "compare",
+      "question": "峨眉山和青城山哪个评分更高？",
+      "type": "compare",
+      "ok": true,
+      "mode": "template",
+      "intent": "compare",
+      "latency_ms": 3.0,
+      "answer_preview": "根据知识图谱对比如下：\n- 峨眉山（乐山，评分 4.8）\n- 青城山（成都，评分 4.6）",
+      "sources": [
+        "峨眉山",
+        "青城山"
+      ]
+    },
+    {
+      "id": "compare-wuhou-caotang",
+      "question": "武侯祠和杜甫草堂哪个评分更高？",
+      "type": "compare",
+      "ok": true,
+      "mode": "template",
+      "intent": "compare",
+      "latency_ms": 2.8,
+      "answer_preview": "根据知识图谱对比如下：\n- 武侯祠（成都，评分 4.6）\n- 杜甫草堂（成都，评分 4.6）",
+      "sources": [
+        "武侯祠",
+        "杜甫草堂"
+      ]
+    },
+    {
+      "id": "open-nature",
+      "question": "四川有哪些自然风景好的地方？",
+      "type": "open",
+      "ok": true,
+      "mode": "template",
+      "intent": "recommend",
+      "latency_ms": 12.3,
+      "answer_preview": "根据知识图谱，为你找到以下景点：\n- 峨眉山（乐山 · 自然、高分、户外，评分 4.8）\n- 成都大熊猫繁育研究基地（成都 · 亲子、动物、自然、高分，评分 4.5）\n- 青城山（成都 · 自然、高分、户外，评分 4.6）\n- 乐山大佛（乐",
+      "sources": [
+        "峨眉山",
+        "成都大熊猫繁育研究基地",
+        "青城山",
+        "乐山大佛",
+        "四姑娘山"
+      ]
+    },
+    {
+      "id": "ticket-policy",
+      "question": "成都大熊猫繁育研究基地门票多少钱？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 3.3,
+      "answer_preview": "成都大熊猫繁育研究基地的门票信息：知识库暂无。。",
+      "sources": [
+        "成都大熊猫繁育研究基地"
+      ]
+    },
+    {
+      "id": "refuse-realtime",
+      "question": "九寨沟明天还剩多少张门票可以买？",
+      "type": "refuse",
+      "ok": true,
+      "mode": "refuse",
+      "intent": "fact",
+      "latency_ms": 0.1,
+      "answer_preview": "知识库没有实时余票、当天库存或预订状态，无法回答该问题。",
+      "sources": []
+    },
+    {
+      "id": "refuse-unknown",
+      "question": "北京故宫今天人多吗？",
+      "type": "refuse",
+      "ok": true,
+      "mode": "refuse",
+      "intent": "open",
+      "latency_ms": 0.0,
+      "answer_preview": "该问题超出四川旅游知识库范围，无法根据当前图谱回答。",
+      "sources": []
+    },
+    {
+      "id": "alias-jinli",
+      "question": "锦里的地址在哪？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 2.8,
+      "answer_preview": "锦里古街的地址是：成都市武侯区武侯祠大街231号附1号。",
+      "sources": [
+        "锦里古街"
+      ]
+    },
+    {
+      "id": "website",
+      "question": "宽窄巷子的官网是什么？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 3.1,
+      "answer_preview": "宽窄巷子的官网是：https://you.ctrip.com/sight/chengdu104/63456.html。宽窄巷子的简介是：宽窄巷子是成都惟一遗留下来的清朝古街道，由宽巷子、窄巷子和井巷子三条平行排列的城市老式街道及其之间的四合",
+      "sources": [
+        "宽窄巷子"
+      ]
+    },
+    {
+      "id": "nearby",
+      "question": "去了武侯祠还可以去哪些附近景点？",
+      "type": "recommend",
+      "ok": true,
+      "mode": "template",
+      "intent": "recommend",
+      "latency_ms": 5.4,
+      "answer_preview": "根据知识图谱，为你找到以下景点：\n- 武侯祠（成都 · 高分、人文、免费、历史、宗教，评分 4.6）\n- 成都市天府美术馆（成都 · 高分、人文、展览，评分 5.0）\n- 四川活体昆虫博物馆（成都 · 高分、人文、展览，评分 5.0）",
+      "sources": [
+        "武侯祠",
+        "成都市天府美术馆",
+        "四川活体昆虫博物馆"
+      ]
+    },
+    {
+      "id": "facilities",
+      "question": "成都大熊猫繁育研究基地有什么服务设施？",
+      "type": "fact",
+      "ok": true,
+      "mode": "template",
+      "intent": "fact",
+      "latency_ms": 2.2,
+      "answer_preview": "成都大熊猫繁育研究基地的服务设施包括：停车场、地址、库位、行李寄存、位于南大门、西大门附近，详询工作人员、景区讲解、园内交通、当前观光车开放站点、南往西方向、西往南方向、乘客到达南。",
+      "sources": [
+        "成都大熊猫繁育研究基地"
+      ]
+    },
+    {
+      "id": "intro-jinli",
+      "question": "介绍一下锦里古街",
+      "type": "intro",
+      "ok": true,
+      "mode": "template",
+      "intent": "intro",
+      "latency_ms": 2.3,
+      "answer_preview": "锦里古街的简介是：锦里古街是成都知名的商业步行街，由一大片清末建筑风格的仿古建筑组成，拥有众多民居、酒吧、餐饮名店，有名的景点武侯祠也在其中。\n锦里古街与武侯祠一墙之隔，游客一般会在游玩武侯祠后，来此逛一逛，这里洋溢着成都特有的喧嚣和随意。",
+      "sources": [
+        "锦里古街"
+      ]
+    }
+  ]
+}

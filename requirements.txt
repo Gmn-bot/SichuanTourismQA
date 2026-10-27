@@ -1,0 +1,19 @@
+# 四川旅游 GraphRAG
+python-dotenv>=1.0.1
+pydantic>=2.6
+pydantic-settings>=2.2
+
+# Neo4j 官方驱动
+neo4j>=5.20.0
+
+# RAG 编排
+langchain-core>=0.3.0
+langchain-openai>=0.2.0
+
+# Web
+fastapi>=0.110.0
+uvicorn>=0.27.0
+
+# 数据与实体链接
+pandas>=2.0.0
+pyahocorasick>=2.1.0

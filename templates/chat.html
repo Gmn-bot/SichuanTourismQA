@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>四川文旅咨询助手</title>
+    <style>
+        :root {
+            --bg: #f4f1ea;
+            --card: #fffdf8;
+            --ink: #1f2a24;
+            --muted: #5c6b63;
+            --line: #e2d9c8;
+            --accent: #2f6f4e;
+            --accent-2: #c45c26;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background:
+                radial-gradient(1200px 500px at 10% -10%, #dcece3 0%, transparent 50%),
+                var(--bg);
+            color: var(--ink);
+        }
+        .wrap { max-width: 880px; margin: 0 auto; padding: 28px 16px 48px; }
+        header h1 { margin: 0 0 6px; font-size: 28px; }
+        header p { margin: 0 0 18px; color: var(--muted); }
+        .chat {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            min-height: 420px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .msg { max-width: 92%; padding: 10px 14px; border-radius: 12px; line-height: 1.55; white-space: pre-wrap; }
+        .msg.user { align-self: flex-end; background: var(--accent); color: #fff; }
+        .msg.bot { align-self: flex-start; background: #f3efe6; }
+        .meta { font-size: 12px; color: var(--muted); margin-top: 6px; }
+        .sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+        .chip {
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 12px;
+        }
+        form { display: flex; gap: 8px; margin-top: 14px; }
+        textarea {
+            flex: 1;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 52px;
+            font-family: inherit;
+        }
+        button {
+            background: var(--accent-2);
+            color: #fff;
+            border: 0;
+            border-radius: 12px;
+            padding: 0 18px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        button:disabled { opacity: 0.6; cursor: default; }
+        .hint { margin-top: 10px; color: var(--muted); font-size: 13px; }
+        .trace { margin-top: 8px; font-size: 12px; color: var(--muted); border-left: 2px solid var(--line); padding-left: 10px; }
+        .trace .step { margin: 3px 0; }
+        .trace .k { color: var(--accent); font-weight: 600; margin-right: 4px; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1>四川文旅咨询助手</h1>
+            <p>ReAct 智能体：思考后选择图谱 / 票价 / 天气 / 购票工具。试试「熊猫基地门票多少钱，成都今天适合去吗」。</p>
+        </header>
+        <div class="chat" id="chat"></div>
+        <form id="form">
+            <textarea id="q" placeholder="咨询四川景点、推荐或附近还能去哪" required></textarea>
+            <button type="submit" id="go">提问</button>
+        </form>
+        <div class="hint">门票、天气、余票都会调用工具。余票没有库存接口，只会给出官网/预约入口，不编剩余张数。</div>
+    </div>
+    <script>
+        const chat = document.getElementById('chat');
+        const form = document.getElementById('form');
+        const input = document.getElementById('q');
+        const go = document.getElementById('go');
+        const sessionId = (crypto.randomUUID && crypto.randomUUID()) || String(Date.now());
+
+        function esc(s) {
+            return String(s || '').replace(/</g, '&lt;');
+        }
+        function renderTrace(trace) {
+            if (!trace || !trace.length) return '';
+            const html = trace.map(step => {
+                let block = '';
+                if (step.thought) block += `<div class="step"><span class="k">思考</span>${esc(step.thought)}</div>`;
+                (step.actions || []).forEach(a => {
+                    block += `<div class="step"><span class="k">行动</span>${esc(a.tool)}</div>`;
+                    if (a.observation) block += `<div class="step"><span class="k">观察</span>${esc(a.observation)}</div>`;
+                });
+                return block;
+            }).join('');
+            return html ? `<div class="trace">${html}</div>` : '';
+        }
+        function add(role, html) {
+            const el = document.createElement('div');
+            el.className = 'msg ' + role;
+            el.innerHTML = html;
+            chat.appendChild(el);
+            chat.scrollTop = chat.scrollHeight;
+            return el;
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const question = input.value.trim();
+            if (!question) return;
+            add('user', esc(question));
+            input.value = '';
+            go.disabled = true;
+            const pending = add('bot', '助手正在查询知识图谱…');
+            try {
+                const res = await fetch('/api/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question, session_id: sessionId })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.detail || '请求失败');
+                const chips = (data.sources || []).slice(0, 6).map(s => {
+                    const extra = [s.city, (s.tags || []).slice(0, 2).join('/'), s.via].filter(Boolean).join(' · ');
+                    return `<span class="chip">${s.name}${extra ? ' · ' + extra : ''}</span>`;
+                }).join('');
+                const toolText = (data.tools_used || []).length ? ' · tools=' + data.tools_used.join(',') : '';
+                pending.innerHTML =
+                    esc(data.answer || '') +
+                    renderTrace(data.trace) +
+                    `<div class="meta">intent=${esc(data.intent)} · mode=${esc(data.mode)}${toolText}</div>` +
+                    (chips ? `<div class="sources">${chips}</div>` : '');
+            } catch (err) {
+                pending.textContent = '出错了：' + err.message;
+            } finally {
+                go.disabled = false;
+                input.focus();
+            }
+        });
+    </script>
+</body>
+</html>
