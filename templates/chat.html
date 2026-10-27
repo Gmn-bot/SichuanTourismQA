@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>四川旅游 GraphRAG</title>
+    <style>
+        :root {
+            --bg: #f4f1ea;
+            --card: #fffdf8;
+            --ink: #1f2a24;
+            --muted: #5c6b63;
+            --line: #e2d9c8;
+            --accent: #2f6f4e;
+            --accent-2: #c45c26;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background:
+                radial-gradient(1200px 500px at 10% -10%, #dcece3 0%, transparent 50%),
+                var(--bg);
+            color: var(--ink);
+        }
+        .wrap { max-width: 880px; margin: 0 auto; padding: 28px 16px 48px; }
+        header h1 { margin: 0 0 6px; font-size: 28px; }
+        header p { margin: 0 0 18px; color: var(--muted); }
+        .chat {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            min-height: 420px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .msg { max-width: 92%; padding: 10px 14px; border-radius: 12px; line-height: 1.55; white-space: pre-wrap; }
+        .msg.user { align-self: flex-end; background: var(--accent); color: #fff; }
+        .msg.bot { align-self: flex-start; background: #f3efe6; }
+        .meta { font-size: 12px; color: var(--muted); margin-top: 6px; }
+        .sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+        .chip {
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 12px;
+        }
+        form { display: flex; gap: 8px; margin-top: 14px; }
+        textarea {
+            flex: 1;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 52px;
+            font-family: inherit;
+        }
+        button {
+            background: var(--accent-2);
+            color: #fff;
+            border: 0;
+            border-radius: 12px;
+            padding: 0 18px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        button:disabled { opacity: 0.6; cursor: default; }
+        .hint { margin-top: 10px; color: var(--muted); font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1>四川旅游 GraphRAG</h1>
+            <p>知识来自 Neo4j 图谱检索，生成带出处。试试「熊猫基地的地址」或「成都适合带小孩的景点」。</p>
+        </header>
+        <div class="chat" id="chat"></div>
+        <form id="form">
+            <textarea id="q" placeholder="输入关于四川景点的问题" required></textarea>
+            <button type="submit" id="go">提问</button>
+        </form>
+        <div class="hint">证据不足时会明确说「知识库暂无」，而不是编造票价或实时余票。</div>
+    </div>
+    <script>
+        const chat = document.getElementById('chat');
+        const form = document.getElementById('form');
+        const input = document.getElementById('q');
+        const go = document.getElementById('go');
+        const sessionId = (crypto.randomUUID && crypto.randomUUID()) || String(Date.now());
+
+        function add(role, html) {
+            const el = document.createElement('div');
+            el.className = 'msg ' + role;
+            el.innerHTML = html;
+            chat.appendChild(el);
+            chat.scrollTop = chat.scrollHeight;
+            return el;
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const question = input.value.trim();
+            if (!question) return;
+            add('user', question.replace(/</g, '&lt;'));
+            input.value = '';
+            go.disabled = true;
+            const pending = add('bot', '正在检索知识图谱…');
+            try {
+                const res = await fetch('/api/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question, session_id: sessionId })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.detail || '请求失败');
+                const chips = (data.sources || []).slice(0, 6).map(s => {
+                    const extra = [s.city, (s.tags || []).slice(0, 2).join('/'), s.via].filter(Boolean).join(' · ');
+                    return `<span class="chip">${s.name}${extra ? ' · ' + extra : ''}</span>`;
+                }).join('');
+                pending.innerHTML =
+                    (data.answer || '').replace(/</g, '&lt;') +
+                    `<div class="meta">intent=${data.intent} · mode=${data.mode} · nlu=${data.understand_source}</div>` +
+                    (chips ? `<div class="sources">${chips}</div>` : '');
+            } catch (err) {
+                pending.textContent = '出错了：' + err.message;
+            } finally {
+                go.disabled = false;
+                input.focus();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[project]
+name = "sichuan-tourism-qa"
+version = "2.0.0"
+description = "四川旅游混合 GraphRAG 问答系统"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "SichuanTourismQA" }]
+
+[project.scripts]
+sichuan-qa = "sichuan_qa.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
